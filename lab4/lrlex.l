@@ -12,7 +12,7 @@ void lex_error(char* msg, int line);
 void count();
 %}
 
-SINGLE_COMMENT      ("//"[^\n]*)
+SINGLE_COMMENT      ("
 MULTI_COMMENT       ("/*"([^*]|[*][^/])*"*/")
 DECIMAL             ("0"|[1-9][0-9]*)
 HEXADECIMAL         ("0"[Xx]{1}[0-9a-fA-F]+)
@@ -128,7 +128,7 @@ int atoi_octal(char* oct) {
 
 int atoi_hex(char* hex) {
     int hexadecimal=0;
-    // 跳过 "0x" 或 "0X"
+    
     for(int i = 2; i < strlen(hex); i++) {
         hexadecimal *= 16;
         if(hex[i] >= '0' && hex[i] <= '9')
@@ -142,9 +142,9 @@ int atoi_hex(char* hex) {
 }
 
 char* save_id(const char* source) {
-    int len = strlen(source); // 获取实际长度
-    char* des = (char*)malloc(len + 1); // 申请内存（+1 是为了存 '\0'）
-    strcpy(des, source); // 复制字符串（会自动复制 '\0'）
+    int len = strlen(source); 
+    char* des = (char*)malloc(len + 1); 
+    strcpy(des, source); 
     return des;
 }
 
